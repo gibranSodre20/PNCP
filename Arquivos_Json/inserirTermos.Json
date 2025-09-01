@@ -1,0 +1,27 @@
+{    
+  "dataAssinatura": "2025-02-11",
+  "objetoTermoContrato": "Termo de contrato para exemplificar uso da API.",
+  "qualificacaoAcrescimoSupressao": "false",
+  "qualificacaoFornecedor": "false",
+  "qualificacaoInformativo": "true",
+  "qualificacaoReajuste": "false",
+  "qualificacaoVigencia": "false",
+  "tipoTermoContratoId": 2,
+  "numeroTermoContrato": "12345822324",
+  "niFornecedor": "00394460000141",
+  "tipoPessoaFornecedor": "PJ",
+  "nomeRazaoSocialFornecedor": "Teste fornecedor",
+  "niFornecedorSubContratado": "00394460000141",
+  "tipoPessoaFornecedorSubContratado": "PJ",
+  "nomeRazaoSocialFornecedorSubContratado": "nomeRazaoSocialFornecedorSubContratado",
+  "informativoObservacao": "Registro exemplificativo.",
+  "fundamentoLegal": "",
+  "valorAcrescido": 1000,
+  "numeroParcelas": 1,
+  "valorParcela": 1000,
+  "valorGlobal": 1000,
+  "prazoAditadoDias": 1,
+  "dataVigenciaInicio": "2025-02-11",
+  "dataVigenciaFim": "2026-02-11"
+
+}

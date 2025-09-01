@@ -1,0 +1,47 @@
+{
+	"codigoUnidadeCompradora": "45001",
+	"anoCompra": 2025,
+	"tipoInstrumentoConvocatorioId": "1",
+	"modalidadeId": "8",
+	"amparoLegalId": 80,
+	"modoDisputaId": "1",
+	"numeroCompra": "6598",
+	"numeroProcesso": "Cnpj teste",
+	"objetoCompra": "Teste - SOLICITAÇÃO DE POSSIVEL CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA FORNECIMENTO DE REFRIGERANTES PARA A ENTREGA NA INAUGURAÇÃO",
+	"srp": false,
+	"dataAberturaProposta": "2024-07-21T08:00:00",
+	"dataEncerramentoProposta": "2024-12-18T14:30:01",
+	"linkSistemaOrigem": "https://hom.pncp.gov.br/app/editais/00394460000141/2024/25",
+	"linkProcessoEletronico": "https://hom.pncp.gov.br/app/editais/00394460000141/2024/24",
+	"informacaoComplementar": "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc.",
+	"fontesOrcamentarias": [
+		2,
+		3
+	],
+	"itensCompra": [
+		{
+			"numeroItem": 1,
+			"materialOuServico": "M",
+			"itemCategoriaId": 3,
+			"tipoBeneficioId": "5",
+			"incentivoProdutivoBasico": false,
+			"orcamentoSigiloso": false,
+			"criterioJulgamentoId": "7",
+			"descricao": "SUCO DE UVA INTEGRAL 200ML",
+			"unidadeMedida": "UN",
+			"quantidade": 300,
+			"valorUnitarioEstimado": 5.99,
+			"valorTotal": 450.5,
+			"aplicabilidadeMargemPreferenciaNormal": true,
+			"aplicabilidadeMargemPreferenciaAdicional": false,
+			"inConteudoNacional": true,
+			"percentualMargemPreferenciaNormal": 10,
+			"codigoTipoMargemPreferencia": 1,
+			"ncmNbsCodigo": "0901.11.10",
+			"catalogoId": 2,
+			"categoriaItemCatalogoId": 2,
+			"catalogoCodigoItem": "A27e-G6",
+			"informacaoComplementar": "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc.Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc.Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc.Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc.Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet. Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características, etc."
+		}
+	]
+}
