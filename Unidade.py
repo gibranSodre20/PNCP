@@ -11,7 +11,7 @@ token = Conexao.get_token()
 files = None
 endpoint = None
 
-cnpj = "21260443000191" #os.getenv ("cnpj_treinamento")
+cnpj = "17572121000100" #os.getenv ("cnpj_treinamento")
 usuario_git = os.getenv ("usuario_git")
 repositorio = os.getenv ("repositorio")
 

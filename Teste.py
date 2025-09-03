@@ -2,7 +2,7 @@ import csv
 import Unidade
 
 # Nome do arquivo CSV
-nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv.csv'
+nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv2.csv'
 
 try:
     with open(nome_arquivo, 'r', newline='', encoding='utf-8') as arquivo_csv:
@@ -14,7 +14,7 @@ try:
             nomeUnidade = linha[0]
             codigoUnidade = linha[1]
             if contador > 0:
-                Unidade.inserirUnidade('21260443000191', codigoUnidade, nomeUnidade, '3133808')
+                Unidade.inserirUnidade('xxxxxx', codigoUnidade, nomeUnidade, 'xxxxx')
                 contador = contador + 1
             else:
                 contador = contador + 1
