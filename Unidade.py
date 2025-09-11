@@ -23,6 +23,7 @@ def inserirUnidade(cnpj, codigoUnidade, nomeUnidade, codigoIBGE):
     json_unidade["codigoIBGE"] = codigoIBGE
     json_unidade["codigoUnidade"] = codigoUnidade 
     json_unidade["nomeUnidade"] = nomeUnidade 
+    #json_unidade = json.dumps(json_unidade, ensure_ascii=False)
     
     headers = {
         "Authorization": f"Bearer {token}",

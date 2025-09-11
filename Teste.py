@@ -2,22 +2,20 @@ import csv
 import Unidade
 
 # Nome do arquivo CSV
-nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv2.csv'
+nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv3.csv'
 
 try:
     with open(nome_arquivo, 'r', newline='', encoding='utf-8') as arquivo_csv:
         # Criar um leitor CSV, especificando o delimitador como ';'
         leitor_csv = csv.reader(arquivo_csv, delimiter=';')
-        contador = 0
+        
         # Iterar sobre as linhas do arquivo
         for linha in leitor_csv:            
             nomeUnidade = linha[0]
             codigoUnidade = linha[1]
-            if contador > 0:
-                Unidade.inserirUnidade('xxxxxx', codigoUnidade, nomeUnidade, 'xxxxx')
-                contador = contador + 1
-            else:
-                contador = contador + 1
+            Unidade.inserirUnidade('alterar - CNPJ', codigoUnidade, nomeUnidade, 'alterar - codIbge')
+                
+            
 
 except FileNotFoundError:
     print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado.")
