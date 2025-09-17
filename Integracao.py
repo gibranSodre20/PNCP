@@ -1,7 +1,7 @@
 import requests
 from typing import Optional, Dict, Any, Union
 
-BASE_URL = "https://treina.pncp.gov.br/api/pncp"
+BASE_URL = "https://pncp.gov.br/api/pncp"
 
 response = None
 

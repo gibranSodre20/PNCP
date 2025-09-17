@@ -2,7 +2,7 @@ import csv
 import Unidade
 
 # Nome do arquivo CSV
-nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv3.csv'
+nome_arquivo = 'D:\\Teste_PNCP\\Arquivos_teste\\Unidades_csv7.csv'
 
 try:
     with open(nome_arquivo, 'r', newline='', encoding='utf-8') as arquivo_csv:
@@ -13,7 +13,7 @@ try:
         for linha in leitor_csv:            
             nomeUnidade = linha[0]
             codigoUnidade = linha[1]
-            Unidade.inserirUnidade('alterar - CNPJ', codigoUnidade, nomeUnidade, 'alterar - codIbge')
+            Unidade.inserirUnidade('xxxx', codigoUnidade, nomeUnidade, 'CODIBGE')
                 
             
 

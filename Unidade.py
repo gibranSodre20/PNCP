@@ -21,7 +21,7 @@ def inserirUnidade(cnpj, codigoUnidade, nomeUnidade, codigoIBGE):
     url_json = f"https://raw.githubusercontent.com/{usuario_git}/{repositorio}/refs/heads/main/Arquivos_Json/InserirUnidade.json"
     json_unidade = BuscarJson.buscar_json_raw(url_json)
     json_unidade["codigoIBGE"] = codigoIBGE
-    json_unidade["codigoUnidade"] = codigoUnidade 
+    json_unidade["codigoUnidade"] = '0' + codigoUnidade 
     json_unidade["nomeUnidade"] = nomeUnidade 
     #json_unidade = json.dumps(json_unidade, ensure_ascii=False)
     

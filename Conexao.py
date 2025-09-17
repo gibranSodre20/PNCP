@@ -7,7 +7,7 @@ import datetime
 load_dotenv()
 
 # Base URL da API
-BASE_URL = 'https://treina.pncp.gov.br/api/pncp'
+BASE_URL = 'https://pncp.gov.br/api/pncp'
 
 # Acessa as variáveis de ambiente
 LOGIN = os.getenv("login")
