@@ -15,14 +15,13 @@ endpoint = None
 usuario_git = os.getenv ("usuario_git")
 repositorio = os.getenv ("repositorio")
 
-def inserirUnidade(cnpj, codigoUnidade, nomeUnidade, codigoIBGE):
-    endpoint = f"/v1/orgaos/{cnpj}/unidades"
+def inserirEnteAutorizado(lista_cnpj, codigoUsuario):
+    endpoint = f"/v1/usuarios/{codigoUsuario}/orgaos"
 
-    url_json = f"https://raw.githubusercontent.com/{usuario_git}/{repositorio}/refs/heads/main/Arquivos_Json/InserirUnidade.json"
-    json_unidade = BuscarJson.buscar_json_raw(url_json)
-    json_unidade["codigoIBGE"] = codigoIBGE
-    json_unidade["codigoUnidade"] = codigoUnidade 
-    json_unidade["nomeUnidade"] = nomeUnidade 
+    url_json = f"https://raw.githubusercontent.com/{usuario_git}/{repositorio}/refs/heads/main/Arquivos_Json/InserirEnteAutorizado.json"
+    json_EnteAutorizado = BuscarJson.buscar_json_raw(url_json)
+    json_EnteAutorizado["entesAutorizados"] = lista_cnpj
+    
     #json_unidade = json.dumps(json_unidade, ensure_ascii=False)
     
     headers = {
@@ -30,5 +29,5 @@ def inserirUnidade(cnpj, codigoUnidade, nomeUnidade, codigoIBGE):
         "Accept": "*/*",
         "Content-Type": "application/json"
         }
-    response = Integracao.executa_endpoint(endpoint, json.dumps(json_unidade, indent=4), headers, files, False)
+    response = Integracao.executa_endpoint(endpoint, json.dumps(json_EnteAutorizado, indent=4), headers, files, False)
     return response
