@@ -10,8 +10,8 @@ load_dotenv()
 BASE_URL = 'https://pncp.gov.br/api/pncp'
 
 # Acessa as variáveis de ambiente
-LOGIN = os.getenv("login")
-SENHA = os.getenv("senhaSwagger")
+#LOGIN = os.getenv("login")
+#SENHA = os.getenv("senhaSwagger")
 DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # Armazenamento do token e expiração
@@ -27,22 +27,23 @@ def is_token_valid() -> bool:
     return False
 
 
-def get_token() -> str | None:
+def get_token(login, senha) -> str | None:
     """Retorna o token atual ou gera um novo se necessário"""
     global TOKEN, EXPIRATION_TIME
 
     if is_token_valid():
         if DEBUG_MODE:
-            print("[DEBUG] Token ainda válido, reutilizando.")
-        return TOKEN
+            return TOKEN
+            #print("[DEBUG] Token ainda válido, reutilizando.")
+        
 
-    if not LOGIN or not SENHA:
+    if not login or not senha:
         if DEBUG_MODE:
             print("[ERRO] Variáveis de ambiente 'login' ou 'senhaSwagger' não estão definidas.")
         return None
 
     url = f"{BASE_URL}/v1/usuarios/login"
-    dados = {"login": LOGIN, "senha": SENHA}
+    dados = {"login": login, "senha": senha}
 
     try:
         resposta = requests.post(url, json=dados)
