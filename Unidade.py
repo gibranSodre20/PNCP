@@ -34,9 +34,9 @@ def cadastarEntesUnidades(id_usuario, arquivo_csv, cadastrar_ente, cadastrar_uni
             
                 for linha in leitor_csv:     
                     cnpjOrgao = linha[0].replace('.','').replace('/','').replace('-','')       
-                    nomeUnidade = linha[2]
-                    codigoUnidade = linha[3]
-                    codigoIBGE = linha[4]
+                    nomeUnidade = linha[1]
+                    codigoUnidade = linha[2]
+                    codigoIBGE = linha[3]
                     
                     if cnpjOrgao != '':
                         if contador > 0:
@@ -84,8 +84,7 @@ def cadastarEntesUnidades(id_usuario, arquivo_csv, cadastrar_ente, cadastrar_uni
             print(f"Erro: O arquivo '{caminhoArquivoCsv}' não foi encontrado.")
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
-
-        
+       
 
 def inserirUnidade(cnpj, codigoUnidade, nomeUnidade, codigoIBGE, login, senha):
     token = Conexao.get_token(login, senha)

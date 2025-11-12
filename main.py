@@ -5,11 +5,35 @@ import Unidade
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit,
     QPushButton, QRadioButton, QButtonGroup, QFileDialog, QCheckBox,
-    QTableWidget, QTableWidgetItem, QHeaderView, QMessageBox
+    QTableWidget, QTableWidgetItem, QHeaderView, QMessageBox, QProgressBar, QDialog
 )
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 
 
+# -------------------- POPUP DE PROGRESSO --------------------
+class ProgressDialog(QDialog):
+    def __init__(self, titulo="Processando...", mensagem="Por favor, aguarde.", parent=None):
+        super().__init__(parent)
+        self.setWindowTitle(titulo)
+        self.setModal(True)
+        self.setFixedSize(350, 120)
+
+        layout = QVBoxLayout()
+        self.label = QLabel(mensagem)
+        self.label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(self.label)
+
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setRange(0, 100)
+        layout.addWidget(self.progress_bar)
+
+        self.setLayout(layout)
+
+    def atualizar_progresso(self, valor):
+        self.progress_bar.setValue(valor)
+
+
+# -------------------- JANELA PRINCIPAL --------------------
 class JanelaPrincipal(QWidget):
     def __init__(self):
         super().__init__()
@@ -26,7 +50,6 @@ class JanelaPrincipal(QWidget):
         self.senha_input.setPlaceholderText("Digite a senha")
         self.senha_input.setEchoMode(QLineEdit.Password)
 
-        # ---- CHECKBOX PARA SALVAR LOGIN E SENHA ----
         self.salvar_login_check = QCheckBox("Salvar login e senha")
 
         self.id_input = QLineEdit()
@@ -74,7 +97,6 @@ class JanelaPrincipal(QWidget):
                 border-radius: 5px;
                 padding: 6px 12px;
                 font-weight: bold;
-                
             }
             QPushButton:hover { background-color: #005fa3; }
         """)
@@ -100,7 +122,7 @@ class JanelaPrincipal(QWidget):
         self.acao_btn.clicked.connect(self.executar_acao)
         layout.addWidget(self.acao_btn)
 
-        # ---- TABELA CONSULTA ----
+        # ---- TABELAS ----
         self.tabela = QTableWidget()
         self.tabela.setColumnCount(1)
         self.tabela.setHorizontalHeaderLabels(["Entes não cadastrados para o usuário informado."])
@@ -120,7 +142,6 @@ class JanelaPrincipal(QWidget):
             QPushButton:hover { background-color: #b02a37; }
         """)
 
-        # ---- TABELA CADASTRO ----
         self.tabela_cadastro = QTableWidget()
         self.tabela_cadastro.setColumnCount(2)
         self.tabela_cadastro.setHorizontalHeaderLabels(["Tipo", "Mensagem"])
@@ -142,11 +163,22 @@ class JanelaPrincipal(QWidget):
         """)
         self.limpar_btn_cadastro.setVisible(False)
 
-        # ---- ADICIONAR AO LAYOUT ----
         layout.addWidget(self.tabela)
         layout.addWidget(self.limpar_btn)
         layout.addWidget(self.tabela_cadastro)
         layout.addWidget(self.limpar_btn_cadastro)
+
+        # ---- STATUS BAR ----
+        self.status_label = QLabel("Pronto.")
+        self.status_label.setAlignment(Qt.AlignCenter)
+        self.status_label.setStyleSheet("""
+            background-color: #F0F0F0;
+            border: 1px solid #CCC;
+            padding: 6px;
+            font-weight: bold;
+            color: #333;
+        """)
+        layout.addWidget(self.status_label)
 
         # ---- CONECTAR RADIO BUTTONS ----
         self.radio_cadastrar.toggled.connect(self.atualizar_visibilidade)
@@ -157,8 +189,11 @@ class JanelaPrincipal(QWidget):
 
     # -------------------- FUNÇÕES AUXILIARES --------------------
 
+    def set_status(self, mensagem, tempo=3000):
+        self.status_label.setText(mensagem)
+        QTimer.singleShot(tempo, lambda: self.status_label.setText("Pronto."))
+
     def carregar_credenciais(self):
-        """Carrega login e senha salvos (se existirem)."""
         if os.path.exists("credenciais.txt"):
             with open("credenciais.txt", "r", encoding="utf-8") as f:
                 dados = f.read().splitlines()
@@ -168,7 +203,6 @@ class JanelaPrincipal(QWidget):
                     self.salvar_login_check.setChecked(True)
 
     def salvar_credenciais(self, login, senha):
-        """Salva login e senha em arquivo, se marcado."""
         if self.salvar_login_check.isChecked():
             with open("credenciais.txt", "w", encoding="utf-8") as f:
                 f.write(f"{login}\n{senha}")
@@ -176,7 +210,6 @@ class JanelaPrincipal(QWidget):
             os.remove("credenciais.txt")
 
     def atualizar_visibilidade(self):
-        """Exibe ou oculta elementos conforme o radio button selecionado."""
         if self.radio_cadastrar.isChecked():
             self.check_ente.setVisible(True)
             self.check_unidade.setVisible(True)
@@ -197,6 +230,7 @@ class JanelaPrincipal(QWidget):
         if arquivo:
             self.csv_label.setText(arquivo)
 
+    # -------------------- EXECUTAR AÇÃO COM POPUP --------------------
     def executar_acao(self):
         login = self.login_input.text().strip()
         senha = self.senha_input.text().strip()
@@ -206,7 +240,7 @@ class JanelaPrincipal(QWidget):
         cadastrar_unidade = self.check_unidade.isChecked()
         cadastrarEntesUnidades = self.radio_cadastrar.isChecked()
         consultarUsuario = self.radio_consultar.isChecked()
-        # ---- Validação obrigatória ----
+
         if not login or not senha:
             QMessageBox.warning(self, "Campos obrigatórios", "Os campos de login e senha são obrigatórios!")
             return
@@ -215,29 +249,56 @@ class JanelaPrincipal(QWidget):
             if not id_usuario:
                 QMessageBox.warning(self, "Campos obrigatórios", "O campo ID Usuário é obrigatório!")
                 return
+
         if cadastrar_unidade or consultarUsuario:
             if arquivo_csv == "Nenhum arquivo selecionado":
                 QMessageBox.warning(self, "Campos obrigatórios", "O arquivo .CSV é obrigatório!")
                 return
-        
+
         if cadastrarEntesUnidades and not cadastrar_unidade and not cadastrar_ente:
-            QMessageBox.warning(self, "Campos obrigatórios", "É obrigatório selecionar pelo menos uma opção (Cadastrar Unidades ou Cadastrar Ente autorizado).")
+            QMessageBox.warning(self, "Campos obrigatórios", "Selecione ao menos uma opção (Unidade ou Ente autorizado).")
             return
 
-        # ---- Salvar credenciais, se solicitado ----
         self.salvar_credenciais(login, senha)
+        self.set_status("Executando...")
 
-        # ---- Execução ----
-        if self.radio_cadastrar.isChecked():
-            resultado = Unidade.cadastarEntesUnidades(id_usuario, arquivo_csv, cadastrar_ente, cadastrar_unidade, login, senha)
-            self.preencher_tabela_cadastro(resultado)
+        # ---- POPUP DE PROGRESSO ----
+        self.progress_dialog = ProgressDialog("Executando ação", "Por favor, aguarde enquanto a operação é realizada...", self)
+        self.progress_dialog.show()
+
+        self.progresso = 0
+        self.progress_timer = QTimer()
+        self.progress_timer.timeout.connect(lambda: self.atualizar_progresso_popup(
+            login, senha, id_usuario, arquivo_csv,
+            cadastrar_ente, cadastrar_unidade,
+            cadastrarEntesUnidades, consultarUsuario
+        ))
+        self.progress_timer.start(50)
+
+    def atualizar_progresso_popup(self, login, senha, id_usuario, arquivo_csv,
+                                  cadastrar_ente, cadastrar_unidade,
+                                  cadastrarEntesUnidades, consultarUsuario):
+        if self.progresso < 100:
+            self.progresso += 5
+            self.progress_dialog.atualizar_progresso(self.progresso)
         else:
-            resultado = Usuario.consultarUsuario(id_usuario, arquivo_csv, login, senha)
-            self.preencher_tabela_consulta(resultado)
+            self.progress_timer.stop()
+            try:
+                if self.radio_cadastrar.isChecked():
+                    resultado = Unidade.cadastarEntesUnidades(id_usuario, arquivo_csv, cadastrar_ente, cadastrar_unidade, login, senha)
+                    self.preencher_tabela_cadastro(resultado)
+                else:
+                    resultado = Usuario.consultarUsuario(id_usuario, arquivo_csv, login, senha)
+                    self.preencher_tabela_consulta(resultado)
 
-        print("\n--- Resultado da Ação ---")
-        print(resultado)
+                self.set_status("Ação concluída com sucesso!", 4000)
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Ocorreu um erro:\n{e}")
+                self.set_status("Erro durante a execução.", 5000)
+            finally:
+                self.progress_dialog.close()
 
+    # -------------------- TABELAS --------------------
     def preencher_tabela_consulta(self, resultado):
         if isinstance(resultado, list):
             self.tabela.setRowCount(len(resultado))
@@ -263,10 +324,12 @@ class JanelaPrincipal(QWidget):
     def limpar_tabela(self):
         self.tabela.setRowCount(0)
         self.id_input.clear()
-        self.csv_label.clear()
+        self.csv_label.setText("Nenhum arquivo selecionado")
+        self.set_status("Tabela de consulta limpa.", 2000)
 
     def limpar_tabela_cadastro(self):
         self.tabela_cadastro.setRowCount(0)
+        self.set_status("Tabela de cadastro limpa.", 2000)
 
 
 if __name__ == "__main__":
@@ -274,3 +337,4 @@ if __name__ == "__main__":
     janela = JanelaPrincipal()
     janela.show()
     sys.exit(app.exec())
+
